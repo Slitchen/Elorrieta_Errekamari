@@ -23,7 +23,7 @@ public class AdminKontsola {
 				return; // Evita que el flujo continúe ejecutándose
 			}
 			
-		Metodoak.menu1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+		MenuAdmin.menu1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
 
 	}
 
