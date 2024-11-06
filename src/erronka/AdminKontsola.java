@@ -19,11 +19,10 @@ public class AdminKontsola {
 			balidatuta = Balidazioak.balidatuGakoa(erabiltzailea, pasahitza);
 			if (balidatuta == false) {
 				OngiEtorri ongiEtorri = new OngiEtorri();
-				ongiEtorri.show(); // Muestra la ventana gráfica
-				return; // Evita que el flujo continúe ejecutándose
+				ongiEtorri.frame.setVisible(true); // Muestra la ventana gráfica
 			}
 			
-		MenuAdmin.menu1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+		MenuAdmin.menu1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);;
 
 	}
 

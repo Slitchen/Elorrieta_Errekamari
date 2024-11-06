@@ -9,8 +9,9 @@ public class Metodoak {
 	public static String mota = "", izena = "", kodea = "", sPrezioa = "", argazkia = "";
 	public static double prezioa = 0;
 
-	public static void case1(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+	public static void produktuakGehitu(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
 			String[] argazkiIzenak, int produktuKop) {
+
 		if (produktuKop == 30) {// gehitzeko aukera blokeatzeko arraya betezen bada
 			System.out.println("ezin da gehitu produktu gehiago");
 			return;
@@ -57,24 +58,16 @@ public class Metodoak {
 		System.out.println("***********************************");
 		System.out.println("Produktuak");
 		System.out.println("***********************************");
-		for (int i = 0; i < izenak.length; i++) {// produktuak pantailaruko ditu
-			if (izenak[i] != null) {
-				System.out.println(i + 1 + "." + " " + "Mota: " + motak[i] + " " + "Izena: " + izenak[i] + " "
-						+ "Kodea: " + kodeak[i] + " " + "Prezioa: " + prezioak[i] + "€" + " " + "Argazki_Izena: "
-						+ argazkiIzenak[i]);
-			}
-		}
-		System.out.println("***********************************");
-		System.out.println("Gehitu nahi duzu produktu gehiago?");
+		produktuGuztiakAtera(motak, izenak, kodeak, prezioak, argazkiIzenak);
 
 	}
 
-	public static void case2(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+	public static void produktuakEzabatu(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
 			String[] argazkiIzenak, int produktuKop) {
 		// Ezabatu produktuak
 		System.out.println("|Ezabatu Menua|");
 		System.out.println("Ipini produktuen kodigoa: ");
-		kode1 = sc.nextLine();
+		String kode1 = sc.nextLine();
 		// Buscar el producto para eliminar
 		encontrado = false;
 		for (int i = 0; i < produktuKop; i++) {
@@ -93,7 +86,7 @@ public class Metodoak {
 				encontrado = true;
 				if (baiEZ == true) {
 					// Desplazar los elementos a la izquierda
-					for (int j = i; j < produktuKop - 1; j++) {
+					for (int j = i; j < produktuKop + 1; j++) {
 						motak[j] = motak[j + 1]; // Mueve el siguiente tipo de producto al lugar actual
 						izenak[j] = izenak[j + 1]; // Mueve el siguiente nombre de producto
 						kodeak[j] = kodeak[j + 1]; // Mueve el siguiente código de producto
@@ -105,18 +98,12 @@ public class Metodoak {
 					kodeak[produktuKop - 1] = null; // Opcional: limpiar el último elemento
 					prezioak[produktuKop - 1] = 0.0; // Opcional: limpiar el último elemento
 					argazkiIzenak[produktuKop - 1] = null; // Opcional: limpiar el último elemento
-					produktuKop--; // Reducir el contador de productos
+					// produktuKop--; // Reducir el contador de productos
 					System.out.println("Produktu ezabatu da.");
 					System.out.println("***********************************");
 					System.out.println("Produktuak");
 					System.out.println("***********************************");
-					for (i = 0; i < izenak.length; i++) {
-						if (izenak[i] != null) {
-							System.out.println(i + 1 + "." + " " + "Mota: " + motak[i] + " " + "Izena: " + izenak[i]
-									+ " " + "Kodea: " + kodeak[i] + " " + "Prezioa: " + prezioak[i] + "€" + " "
-									+ "Argazki_Izena: " + argazkiIzenak[i]);
-						}
-					}
+					produktuGuztiakAtera(motak, izenak, kodeak, prezioak, argazkiIzenak);
 					System.out.println("***********************************");
 					break;
 				} else {
@@ -131,16 +118,10 @@ public class Metodoak {
 		}
 	}
 
-	public static void case3(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+	public static void produktuaModifikatu(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
 			String[] argazkiIzenak, int produktuKop) {
 		System.out.println("Produktuak");
-		for (int i = 0; i < izenak.length; i++) {
-			if (izenak[i] != null) {
-				System.out.println(i + 1 + "." + " " + "Mota: " + motak[i] + " " + "Izena: " + izenak[i] + " "
-						+ "Kodea: " + kodeak[i] + " " + "Prezioa: " + prezioak[i] + "€" + " " + "Argazki_Izena: "
-						+ argazkiIzenak[i]);
-			}
-		}
+		produktuGuztiakAtera(motak, izenak, kodeak, prezioak, argazkiIzenak);
 		System.out.println("***********************************");
 		do {
 			System.out.println("produktua aldatzeko aukerarekin jarraitu nahi duzu?(Bai/Ez)");
@@ -211,7 +192,7 @@ public class Metodoak {
 						do {
 							System.out.println("Ipini produktuen kode berria: ");
 							kodea = sc.nextLine();
-							balidatuta = Balidazioak.balidatuKodea(kodea);
+							balidatuta = Balidazioak.balidatuKodeaDesberdina(kodea, produktuKop, kodeak);
 						} while (balidatuta == false);
 						kodeak[i] = kodea;
 						break;
@@ -245,25 +226,36 @@ public class Metodoak {
 					} while (baiEZ == false);
 					baiEZ = Balidazioak.baiEdoEz(baiEz);
 				} while (baiEZ == true);
-				System.out.println("***********************************");
-				System.out.println("Produktuak guztiak:");
-				System.out.println("***********************************");
-				for (i = 0; i < izenak.length; i++) {
-					if (izenak[i] != null) {
-						System.out.println(i + 1 + "." + " " + "Mota: " + motak[i] + " " + "Izena: " + izenak[i] + " "
-								+ "Kodea: " + kodeak[i] + " " + "Prezioa: " + prezioak[i] + "€" + " "
-								+ "Argazki_Izena: " + argazkiIzenak[i]);
-					}
-				}
-
 			}
 		}
 	}
 
-	public static void case4() {
+	public static void programarenAmaiera() {
 		System.out.println("Kontsolatik ateratzen....");
-		OngiEtorri ongiEtorri = new OngiEtorri();
-		ongiEtorri.show(); // Muestra la ventana gráfica
 		return; // Evita que el flujo continúe ejecutándose
+	}
+
+	public static void produktuGuztiakAtera(String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+			String[] argazkiIzenak) {
+		System.out.println("***********************************");
+		System.out.println("Produktuak guztiak:");
+		System.out.println("***********************************");
+		for (int i = 0; i < izenak.length; i++) {
+			if (izenak[i] != null) {
+				System.out.println(i + 1 + "." + " " + "Mota: " + motak[i] + " " + "Izena: " + izenak[i] + " "
+						+ "Kodea: " + kodeak[i] + " " + "Prezioa: " + prezioak[i] + "€" + " " + "Argazki_Izena: "
+						+ argazkiIzenak[i]);
+			}
+		}
+	}
+	
+	public static int recorrerArray(String[] izenak, int produktuKop) {
+		for (int i = 0; i<izenak.length; i++) {
+			if(izenak[i] == null) {
+				produktuKop = i;
+				break;
+			}
+		}
+		return produktuKop;
 	}
 }

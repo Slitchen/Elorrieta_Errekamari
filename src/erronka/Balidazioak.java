@@ -96,7 +96,7 @@ public class Balidazioak {
 				System.out.println("ez dira gehiago sartzen");
 				return balidatuta;
 			}
-		} else if (mota.equals("sexShop")) {
+		} else if (mota.equals("sexshop")) {
 			for (int i = 0; i < motak.length; i++) {// produktuak pantailaruko ditu
 				if (motak[i] == "sexShop") {
 					kant++;
@@ -176,7 +176,7 @@ public class Balidazioak {
 	 */
 	public static boolean balidatuIzena(String izena) {
 		boolean balidatuta = false;
-		if (izena.matches("[a-zA-Z]{2,}")) {// errespetatu behar duen formatua
+		if (izena.matches("[a-zA-Z ]{2,}+")) {// errespetatu behar duen formatua
 			balidatuta = true;
 			return balidatuta;
 		} else {
@@ -212,21 +212,22 @@ public class Balidazioak {
 	 * @return ondo badago true itzuliko du, bestela false
 	 */
 	public static boolean balidatuKodeaDesberdina(String kodea, int produktuKop, String[] kodeak) {
-		boolean balidatuta = false;
-		String kodeaI = "";
-		balidatuta = balidatuKodea(kodea);
-		if (balidatuta == true) {
-			for (int i = 0; i < produktuKop; i++) {
-				kodeaI = kodeak[i];
-				if (kodeaI.equals(kodea)) {
-					System.out.println("Kodea ezin da errepikatu");
-					balidatuta = false;
-				}
-			}
-			return balidatuta;
-		} else {
-			return balidatuta;
-		}
+	    boolean balidatuta = false;
+	    balidatuta = balidatuKodea(kodea); // Asegura que el código es válido
+
+	    if (balidatuta) {
+	        for (int i = 0; i < produktuKop; i++) {
+	            String kodeaI = kodeak[i]; // Asigna el código actual del array
+
+	            // Verifica si kodeaI es null antes de comparar
+	            if (kodeaI != null && kodeaI.equals(kodea)) {
+	                System.out.println("Kodea ezin da errepikatu");
+	                balidatuta = false;
+	                break; // Sale del bucle si encuentra un duplicado
+	            }
+	        }
+	    }
+	    return balidatuta;
 	}
 
 	/**
@@ -237,7 +238,7 @@ public class Balidazioak {
 	 */
 	public static boolean balidatuMota(String mota) {
 		boolean balidatuta = false;
-		if (mota.matches("janaria") || mota.matches("edaria") || mota.matches("sexShop")
+		if (mota.matches("janaria") || mota.matches("edaria") || mota.matches("sexshop")
 				|| mota.matches("erretzaile")) {
 			balidatuta = true;
 			return balidatuta;

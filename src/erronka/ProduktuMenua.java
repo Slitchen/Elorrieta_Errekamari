@@ -7,7 +7,8 @@ package erronka;
 	import javax.swing.JLabel;
 	import javax.swing.JPanel;
 	import java.awt.event.ActionListener;
-	import java.awt.event.ActionEvent;
+import java.util.Scanner;
+import java.awt.event.ActionEvent;
 	import javax.swing.SwingConstants;
 	import java.awt.Font;
 	import java.awt.Color;
@@ -15,7 +16,7 @@ package erronka;
 
 public class ProduktuMenua {
 
-	private JFrame frame;
+    public JFrame frame;
 	private JPanel panelEdaria;
 	private JPanel panelA;
 	private JLabel lblIzenburua;
@@ -33,62 +34,54 @@ public class ProduktuMenua {
 	private ImageIcon imageIcon3;
 	private ImageIcon imageIcon4;
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	public void show() {
-		initialize();
-		frame.setVisible(true);// hace que el JFrame de esta pagina sea visible
-	}
 
-	/**
-	 * Create the application.
-	 */
+    public ProduktuMenua(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+			String[] argazkiIzenak, int produktuKop) {
+    	produktuMenua(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(SystemColor.textHighlightText);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+    private void produktuMenua(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+			String[] argazkiIzenak, int produktuKop) {
+    	frame = new JFrame();
+        frame.getContentPane().setBackground(SystemColor.textHighlightText);
+        frame.setBounds(100, 100, 450, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
 
-		panelA = new JPanel();
-		panelA.setBounds(0, 0, 434, 70);
-		frame.getContentPane().add(panelA);
-		panelA.setLayout(null);
+        panelA = new JPanel();
+        panelA.setBounds(0, 0, 434, 70);
+        frame.getContentPane().add(panelA);
+        panelA.setLayout(null);
 
-		lblIzenburua = new JLabel("Produktu Menua");
-		lblIzenburua.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIzenburua.setFont(new Font("Colonna MT", Font.PLAIN, 39));
-		lblIzenburua.setEnabled(false);
-		lblIzenburua.setBounds(71, 11, 305, 48);
-		panelA.add(lblIzenburua);
+        lblIzenburua = new JLabel("Produktu Menua");
+        lblIzenburua.setHorizontalAlignment(SwingConstants.CENTER);
+        lblIzenburua.setFont(new Font("Colonna MT", Font.PLAIN, 39));
+        lblIzenburua.setEnabled(false);
+        lblIzenburua.setBounds(71, 11, 305, 48);
+        panelA.add(lblIzenburua);
 
-		panelB = new JPanel();
-		panelB.setLayout(null);
-		panelB.setBounds(0, 70, 434, 191);
-		frame.getContentPane().add(panelB);
+        panelB = new JPanel();
+        panelB.setLayout(null);
+        panelB.setBounds(0, 70, 434, 191);
+        frame.getContentPane().add(panelB);
 
-		panelEdaria = new JPanel();
-		panelEdaria.setLayout(null);
-		panelEdaria.setBackground(SystemColor.controlLtHighlight);
-		panelEdaria.setBounds(10, 34, 81, 109);
-		panelB.add(panelEdaria);
+        panelEdaria = new JPanel();
+        panelEdaria.setLayout(null);
+        panelEdaria.setBackground(SystemColor.controlLtHighlight);
+        panelEdaria.setBounds(10, 34, 81, 109);
+        panelB.add(panelEdaria);
 
-		btnEdaria = new JButton("");
-		btnEdaria.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				KatalogoEdaria katalogoEdaria = new KatalogoEdaria();
-				katalogoEdaria.show();
-				frame.dispose();
+        btnEdaria = new JButton("");
+        btnEdaria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                KatalogoEdaria katalogoEdaria = new KatalogoEdaria(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+                katalogoEdaria.frame.setVisible(true);
+                frame.dispose();
+            }
+        });
+        btnEdaria.setBounds(0, 0, 81, 109);
+        panelEdaria.add(btnEdaria);
 
-			}
-		});
-		btnEdaria.setBounds(0, 0, 81, 109);
-		panelEdaria.add(btnEdaria);
 
 		panelJanaria = new JPanel();
 		panelJanaria.setLayout(null);
@@ -99,8 +92,8 @@ public class ProduktuMenua {
 		btnJanaria = new JButton("");
 		btnJanaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				KatalogoJanaria katalogoJanaria = new KatalogoJanaria();
-				katalogoJanaria.show();
+				KatalogoJanaria katalogoJanaria = new KatalogoJanaria(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				katalogoJanaria.frame.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -116,8 +109,8 @@ public class ProduktuMenua {
 		btnSex = new JButton("");
 		btnSex.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				KatalogoSexshop katalogoSexshop = new KatalogoSexshop();
-				katalogoSexshop.show();
+				KatalogoSexshop katalogoSexshop = new KatalogoSexshop(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				katalogoSexshop.frame.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -133,8 +126,8 @@ public class ProduktuMenua {
 		btnErretzaile = new JButton("");
 		btnErretzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				KatalogoErretzaile katalogoErretzaile = new KatalogoErretzaile();
-				katalogoErretzaile.show();
+				KatalogoErretzaile katalogoErretzaile = new KatalogoErretzaile(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				katalogoErretzaile.frame.setVisible(true);
 				frame.dispose();
 			}
 		});
@@ -147,7 +140,7 @@ public class ProduktuMenua {
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OngiEtorri ongiEtorri = new OngiEtorri();
-				ongiEtorri.show();
+				ongiEtorri.frame.setVisible(true);
 				frame.dispose();
 			}
 		});

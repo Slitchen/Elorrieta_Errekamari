@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class MenuAdmin {
 	// Produktuen datuak gordetzeko arrayak
 
-	public static void menu1(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak, String[] argazkiIzenak, int produktuKop) {
+	public static void menu1(Scanner sc, String[] motak, String[] izenak, String[] kodeak, Double[] prezioak,
+			String[] argazkiIzenak, int produktuKop) {
 		int aukera = 0;
 		String saukera = "";
 		boolean error = true;
 		boolean gora = true;
-		
+
 		do {
 			do {
 				System.out.println("***********************************");
@@ -27,22 +28,40 @@ public class MenuAdmin {
 			} while (error);
 			aukera = Integer.parseInt(saukera);
 			switch (aukera) {
-			
-			case 1: //produktuak gehitzeko menua, datuak eskatuko ditu , eta behin balidatutak gordeko ditu arrayan, arrayaren azken atalean
-				Metodoak.case1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+
+			case 1: // produktuak gehitzeko menua, datuak eskatuko ditu , eta behin balidatutak
+					// gordeko ditu arrayan, arrayaren azken atalean
+				boolean baiEZ;
+				String baiEz = "";
+				do {
+					Metodoak.produktuakGehitu(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+					produktuKop++;
+					System.out.println("***********************************");
+
+					do {
+						System.out.println("Gehitu nahi duzu produktu gehiago?(Bai/Ez)");
+						baiEz = sc.nextLine();
+						baiEZ = Balidazioak.balidatutaBaiEz(baiEz);
+					} while (baiEZ == false);
+					baiEZ = Balidazioak.baiEdoEz(baiEz);
+				} while (baiEZ == true);
 				break;
 			case 2:
-				Metodoak.case2(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				Metodoak.produktuakEzabatu(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				produktuKop--;
 				break;
 			case 3:
-				Metodoak.case3(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				
+				Metodoak.produktuaModifikatu(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
+				
+				Metodoak.produktuGuztiakAtera(motak, izenak, kodeak, prezioak, argazkiIzenak);
 				break;
 			case 4:
-				Metodoak.case4();
+				Metodoak.programarenAmaiera();
+				return;
 			default:
 			}
 		} while (gora);// beti buklean egoteko
 	}
-
 
 }
