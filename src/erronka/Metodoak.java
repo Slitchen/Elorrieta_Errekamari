@@ -232,6 +232,8 @@ public class Metodoak {
 
 	public static void programarenAmaiera() {
 		System.out.println("Kontsolatik ateratzen....");
+		OngiEtorri ongiEtorri = new OngiEtorri();
+		ongiEtorri.frame.setVisible(true);
 		return; // Evita que el flujo continúe ejecutándose
 	}
 

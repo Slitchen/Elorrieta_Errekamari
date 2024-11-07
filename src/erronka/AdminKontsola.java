@@ -20,6 +20,7 @@ public class AdminKontsola {
 			if (balidatuta == false) {
 				OngiEtorri ongiEtorri = new OngiEtorri();
 				ongiEtorri.frame.setVisible(true); // Muestra la ventana gráfica
+				return;
 			}
 			
 		MenuAdmin.menu1(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);;

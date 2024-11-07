@@ -23,7 +23,7 @@ public class OngiEtorri {
     public JFrame frame;
 
     // Inicialización de arrays
-    public static void hasieratuArray(String[] motak, String[] izenak, String[] kodeak, Double[] prezioak, String[] argazkiIzenak) {
+{
  
 		motak[0] = "janaria";
 		izenak[0] = "Choco Boom Zuria";
@@ -65,13 +65,13 @@ public class OngiEtorri {
 		motak[6] = "edaria";
 		izenak[6] = "Toroloco Original";
 		kodeak[6] = "A007";
-		prezioak[6] = 1.0;
+		prezioak[6] = 1.2;
 		argazkiIzenak[6] = "/torolocoOriginal.jpg";
 
 		motak[7] = "edaria";
 		izenak[7] = "Toroloco Mango";
 		kodeak[7] = "A008";
-		prezioak[7] = 1.0;
+		prezioak[7] = 1.3;
 		argazkiIzenak[7] = "/torolocoMango.jpg";
 
 		// erretzaile
@@ -95,12 +95,7 @@ public class OngiEtorri {
 		prezioak[10] = 12.0;
 		argazkiIzenak[10] = "/condonesDurex1.jpg";
 		
-		
-
 	}
-    
-    
-
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -121,7 +116,6 @@ public class OngiEtorri {
 
 	
 	private void OngiEtorria() {
-		hasieratuArray(motak, izenak, kodeak, prezioak, argazkiIzenak);
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.controlLtHighlight);
 		frame.setBounds(100, 100, 450, 300);
@@ -152,6 +146,7 @@ public class OngiEtorri {
 		frame.getContentPane().add(btnAdmin);
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
 				AdminKontsola admin = new AdminKontsola();
 				admin.Gakoa(sc, motak, izenak, kodeak, prezioak, argazkiIzenak, produktuKop);
 			}
