@@ -1,7 +1,6 @@
 package erronka;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -11,90 +10,37 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 public class OngiEtorri {
+	public JFrame frame;
 	private JButton btnAdmin;
 	private JButton btnOngiEtorri;
-    private String[] motak = new String[30];
-    private String[] izenak = new String[30];
-    private String[] kodeak = new String[30];
-    private Double[] prezioak = new Double[30];
-    private String[] argazkiIzenak = new String[30];
-    private int produktuKop = 11;
-    private Scanner sc = new Scanner(System.in);
-    public JFrame frame;
+	// Moten arrayak sortuko ditugu main-ean beste klasetan erabiltzeko
+	private static String[] motak;
+	private static String[] izenak;
+	private static String[] kodeak;
+	private static Double[] prezioak;
+	private static String[] argazkiIzenak;
+	private int produktuKop = 14;
+	private static boolean arraysInicializados = false; // Indicador de inicialización
+	Scanner sc = new Scanner(System.in);
 
-    // Inicialización de arrays
-{
- 
-		motak[0] = "janaria";
-		izenak[0] = "Choco Boom Zuria";
-		kodeak[0] = "A001";
-		prezioak[0] = 0.80;
-		argazkiIzenak[0] = "/chocoBoombl.jpg";
+	/*
+	 * Arrayak hasieratuko ditugu
+	 */
+	public static void hasieratuArray() {
+		if (!arraysInicializados) {
+			motak = new String[30];
+			izenak = new String[30];
+			kodeak = new String[30];
+			prezioak = new Double[30];
+			argazkiIzenak = new String[30];
+			motak = KudeatuArray.hasieratuMotak(motak);
+			izenak = KudeatuArray.hasieratuIzenak(izenak);
+			kodeak = KudeatuArray.hasieratuKodeak(kodeak);
+			prezioak = KudeatuArray.hasieratuPrezioak(prezioak);
+			argazkiIzenak = KudeatuArray.hasieratuArgazkiIzenak(argazkiIzenak);
+			arraysInicializados = true;
+		}
 
-		motak[1] = "janaria";
-		izenak[1] = "Choco Boom Beltza";
-		kodeak[1] = "A002";
-		prezioak[1] = 0.80;
-		argazkiIzenak[1] = "/chocoBoomng.jpg";
-
-		motak[2] = "janaria";
-		izenak[2] = "Oreo";
-		kodeak[2] = "A003";
-		prezioak[2] = 1.0;
-		argazkiIzenak[2] = "/oreo.jpg";
-
-		motak[3] = "janaria";
-		izenak[3] = "Ruffles Jamon";
-		kodeak[3] = "A004";
-		prezioak[3] = 0.50;
-		argazkiIzenak[3] = "/ruflesJamon.jpg";
-
-		motak[4] = "janaria";
-		izenak[4] = "Ruffles Original";
-		kodeak[4] = "A005";
-		prezioak[4] = 0.50;
-		argazkiIzenak[4] = "/ruflesOriginal.jpg";
-
-		// edariak
-		motak[5] = "edaria";
-		izenak[5] = "Toroloco Opalo";
-		kodeak[5] = "A006";
-		prezioak[5] = 1.0;
-		argazkiIzenak[5] = "/torolocoOpalo.jpg";
-
-		motak[6] = "edaria";
-		izenak[6] = "Toroloco Original";
-		kodeak[6] = "A007";
-		prezioak[6] = 1.2;
-		argazkiIzenak[6] = "/torolocoOriginal.jpg";
-
-		motak[7] = "edaria";
-		izenak[7] = "Toroloco Mango";
-		kodeak[7] = "A008";
-		prezioak[7] = 1.3;
-		argazkiIzenak[7] = "/torolocoMango.jpg";
-
-		// erretzaile
-
-		motak[8] = "erretzaile";
-		izenak[8] = "Malboro";
-		kodeak[8] = "A09";
-		prezioak[8] = 4.0;
-		argazkiIzenak[8] = "/fumarMata.jpg";
-
-		motak[9] = "erretzaile";
-		izenak[9] = "Lucky Strike";
-		kodeak[9] = "A010";
-		prezioak[9] = 3.0;
-		argazkiIzenak[9] = "/luckyStrike.jpg";
-
-		// sexshop
-		motak[10] = "sexshop";
-		izenak[10] = "Durex Urdina";
-		kodeak[10] = "A011";
-		prezioak[10] = 12.0;
-		argazkiIzenak[10] = "/condonesDurex1.jpg";
-		
 	}
 
 	public static void main(String[] args) {
@@ -116,13 +62,15 @@ public class OngiEtorri {
 
 	
 	private void OngiEtorria() {
+		
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.controlLtHighlight);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		
+		hasieratuArray();
 
 		btnOngiEtorri = new JButton("ONGI ETORRI");
 		btnOngiEtorri.setFont(new Font("Leelawadee", Font.BOLD, 28));

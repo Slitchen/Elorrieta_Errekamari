@@ -229,7 +229,7 @@ public class Katalogo {
 		btn0.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn0.setBounds(100, 269, 63, 38);
 		panelc.add(btn0);
-
+		
 		btn1 = new JButton("1");
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -337,7 +337,7 @@ public class Katalogo {
 		btn9.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn9.setBounds(166, 143, 63, 38);
 		panelc.add(btn9);
-
+		
 		btnC = new JButton("C");
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -454,10 +454,7 @@ public class Katalogo {
 			Double[] prezioak, String[] argazkiIzenak, int produktuKop, String mota) {
 
 		int labelIndex = 1; // Empezamos desde el producto 1
-
-		btn1.setBounds(32, 227, 63, 38);
-		panelc.add(btn1);
-		for (int i = 0; i < produktuKop; i++) {
+		for (int i = 0; i <  izenak.length; i++) {
 			if (motak[i] != null && motak[i].equals(mota) && prezioak[i] != null) {
 
 				String prezio = Double.toString(prezioak[i]) + "€"; // Convertir el precio a cadena
@@ -501,25 +498,23 @@ public class Katalogo {
 					btn4 = new JButton("4");
 					btn4.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							System.out.println(prezio);
 							textselecnum.setText("4");
 							txtPrezio.setText(prezio);
 						}
 					});
-					btn4.setBounds(32, 227, 63, 38);
+					btn4.setBounds(32, 184, 63, 38);
 					panelc.add(btn4);
 					break;
 				case 5:
 					btn5 = new JButton("5");
 					btn5.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							System.out.println(prezio);
+						public void actionPerformed(ActionEvent e) {;
 							textselecnum.setText("5");
 							txtPrezio.setText(prezio);
 						}
 
 					});
-					btn5.setBounds(32, 227, 63, 38);
+					btn5.setBounds(100, 184, 63, 38);
 					panelc.add(btn5);
 					break;
 				case 6:
@@ -531,8 +526,7 @@ public class Katalogo {
 						}
 
 					});
-					btn6.setFont(new Font("Tahoma", Font.PLAIN, 11));
-					btn6.setBounds(32, 227, 63, 38);
+					btn6.setBounds(166, 184, 63, 38);
 					panelc.add(btn6);
 					break;
 				case 7:
@@ -544,8 +538,7 @@ public class Katalogo {
 						}
 
 					});
-					btn7.setFont(new Font("Tahoma", Font.PLAIN, 11));
-					btn7.setBounds(32, 227, 63, 38);
+					btn7.setBounds(32, 143, 63, 38);
 					panelc.add(btn7);
 					break;
 				case 8:
@@ -557,8 +550,7 @@ public class Katalogo {
 						}
 
 					});
-					btn8.setFont(new Font("Tahoma", Font.PLAIN, 11));
-					btn8.setBounds(32, 227, 63, 38);
+					btn8.setBounds(100, 143, 63, 38);
 					panelc.add(btn8);
 					break;
 				case 9:
@@ -570,8 +562,7 @@ public class Katalogo {
 						}
 
 					});
-					btn9.setFont(new Font("Tahoma", Font.PLAIN, 11));
-					btn9.setBounds(32, 227, 63, 38);
+					btn9.setBounds(166, 143, 63, 38);
 					panelc.add(btn9);
 					break;
 				default: 
@@ -591,7 +582,7 @@ public class Katalogo {
 		int labelIndex = 1; // Iniciamos con lblP1
 
 // Iterar sobre todos los productos y buscar los de tipo "edaria"
-		for (int i = 0; i < produktuKop; i++) {
+		for (int i = 0; i <  izenak.length; i++) {
 // Verificar si el producto es de tipo "edaria" y tiene una imagen
 			if (izenak[i] != null && motak[i] != null && motak[i].equals(mota) && argazkiIzenak[i] != null) {
 // Cargar y escalar la imagen
@@ -648,23 +639,6 @@ public class Katalogo {
 			}
 		}
 
-// Limpiar los JLabel restantes si no se usaron todos
-		if (labelIndex <= 2)
-			lblP2.setIcon(null);
-		if (labelIndex <= 3)
-			lblP3.setIcon(null);
-		if (labelIndex <= 4)
-			lblP4.setIcon(null);
-		if (labelIndex <= 5)
-			lblP5.setIcon(null);
-		if (labelIndex <= 6)
-			lblP6.setIcon(null);
-		if (labelIndex <= 7)
-			lblP7.setIcon(null);
-		if (labelIndex <= 8)
-			lblP8.setIcon(null);
-		if (labelIndex <= 9)
-			lblP9.setIcon(null);
 
 	}
 
@@ -673,7 +647,7 @@ public class Katalogo {
 			Double[] prezioak, String[] argazkiIzenak, int produktuKop, String mota) {
 		int labelIndex = 1;
 
-		for (int i = 0; i < produktuKop; i++) {
+		for (int i = 0; i < izenak.length; i++) {
 			if (izenak[i] != null && motak[i] != null && motak[i].equals(mota)) {
 				switch (labelIndex) {
 				case 1:
